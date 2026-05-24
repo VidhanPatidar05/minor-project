@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Substance Checker</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for(
+    'static',
+    filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>
+        Banned Substance Checker
+    </h1>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="substance"
+            placeholder="Enter Substance Name"
+            required
+        >
+
+        <button type="submit">
+            Check Substance
+        </button>
+
+    </form>
+
+    {% if result %}
+
+        <h2>{{ result }}</h2>
+
+    {% endif %}
+
+    <h2>
+        Common Banned Substances
+    </h2>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Substance Name</th>
+        </tr>
+
+        {% for item in substances %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ item }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/dashboard">
+        <button>
+            Back to Dashboard
+        </button>
+    </a>
+
+</div>
+
+</body>
+</html>

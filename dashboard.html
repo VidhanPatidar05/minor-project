@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <h2>Anti-Doping</h2>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/add">
+            Add Athlete
+        </a>
+
+        <a href="/upload">
+            Upload Dataset
+        </a>
+
+        <a href="/download">
+            Download Report CSV
+        </a>
+        <a href="/download-pdf">
+            Download Report PDF
+         </a>
+
+        <a href="/substances">
+            Substances Checker
+        </a>
+        <a href="/history">
+         Prediction History
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <div class="top-bar">
+
+    <h1>
+        Dashboard
+    </h1>
+
+        <button
+        id="themeToggle">
+        🌙 Dark Mode
+        </button>
+
+    </div>
+
+        <!-- Statistics -->
+        <div class="stats-container">
+
+            <div class="card">
+                <h2>{{ total }}</h2>
+                <p>Total Athletes</p>
+            </div>
+
+            <div class="card">
+                <h2>{{ low }}</h2>
+                <p>Low Risk</p>
+            </div>
+
+            <div class="card">
+                <h2>{{ medium }}</h2>
+                <p>Medium Risk</p>
+            </div>
+
+            <div class="card">
+                <h2>{{ high }}</h2>
+                <p>High Risk</p>
+            </div>
+
+        </div>
+
+        <!-- Search -->
+        <form method="GET"
+        action="/dashboard">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search Athlete"
+                value="{{ search }}"
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+        <!-- Charts -->
+        <h2>Doping Risk Analysis</h2>
+
+        <img src="{{ url_for(
+        'static',
+        filename='graph.png') }}"
+        width="500">
+
+        <br><br>
+
+        <img src="{{ url_for(
+        'static',
+        filename='pie_chart.png') }}"
+        width="400">
+        <br><br>
+
+        <h2>
+            Athlete Sports Analysis
+        </h2>
+
+        <img src="{{ url_for(
+            'static',
+            filename='sport_graph.png') }}"
+            width="550">
+
+        <!-- Table -->
+        <table>
+
+           <table>
+
+    <tr>
+        <th>ID</th>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Sport</th>
+        <th>Risk</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for athlete in athletes %}
+    <tr>
+
+        <td>
+            {{ athlete.id }}
+        </td>
+
+        <td>
+
+            {% if athlete.photo %}
+
+            <img
+            src="{{ url_for(
+            'static',
+            filename='uploads/' +
+            athlete.photo) }}"
+            width="60"
+            height="60"
+            style="
+            border-radius:50%;
+            object-fit:cover;">
+
+            {% else %}
+
+            No Photo
+
+            {% endif %}
+
+        </td>
+
+        <td>
+            <a href="/athlete/{{ athlete.id }}">
+                {{ athlete.name }}
+            </a>
+        </td>
+
+        <td>
+            {{ athlete.age }}
+        </td>
+
+        <td>
+            {{ athlete.sport }}
+        </td>
+
+        <td>
+            {{ athlete.risk_level }}
+        </td>
+
+        <td>
+
+            <a href="/edit/{{ athlete.id }}">
+                <button>
+                    Edit
+                </button>
+            </a>
+
+            <a href="/delete/{{ athlete.id }}">
+                <button>
+                    Delete
+                </button>
+            </a>
+
+        </td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+
+    </div>
+
+</div>
+<script>
+
+const toggleBtn =
+document.getElementById(
+"themeToggle"
+);
+
+if(
+localStorage.getItem(
+"theme"
+) === "dark"
+){
+    document.body.classList
+    .add("dark-mode");
+
+    toggleBtn.innerHTML =
+    "☀ Light Mode";
+}
+
+toggleBtn.addEventListener(
+"click",
+() => {
+
+    document.body.classList
+    .toggle("dark-mode");
+
+    if(
+        document.body
+        .classList
+        .contains(
+        "dark-mode"
+        )
+    ){
+
+        localStorage.setItem(
+        "theme",
+        "dark"
+        );
+
+        toggleBtn.innerHTML =
+        "☀ Light Mode";
+
+    } else {
+
+        localStorage.setItem(
+        "theme",
+        "light"
+        );
+
+        toggleBtn.innerHTML =
+        "🌙 Dark Mode";
+    }
+});
+
+</script>
+
+</body>
+</html>

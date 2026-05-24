@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for(
+    'static',
+    filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Doping Risk Prediction</h1>
+
+    <h2>
+        Athlete: {{ name }}
+    </h2>
+
+    <h2>
+        Risk Level:
+        {{ risk_level }}
+    </h2>
+
+    {% if risk_level == "High" %}
+
+        <div class="alert-box high-risk">
+            ⚠ HIGH RISK ALERT!
+            Athlete requires
+            immediate investigation.
+        </div>
+
+    {% elif risk_level == "Medium" %}
+
+        <div class="alert-box medium-risk">
+            Moderate monitoring needed.
+        </div>
+
+    {% else %}
+
+        <div class="alert-box low-risk">
+            Athlete appears safe.
+        </div>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/dashboard">
+        <button>
+            Back to Dashboard
+        </button>
+    </a>
+
+</div>
+
+</body>
+</html>

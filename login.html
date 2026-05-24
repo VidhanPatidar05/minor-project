@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>
+        Anti-Doping Login
+    </title>
+
+    <link rel="stylesheet"
+    href="{{ url_for(
+    'static',
+    filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body class="login-body">
+
+    <div class="login-container">
+
+        <!-- Left Side -->
+
+        <div class="login-left">
+
+            <h1>
+                Enhancement of
+                Anti-Doping System
+            </h1>
+
+            <p>
+                AI-Based Athlete Monitoring
+                & Risk Prediction Platform
+            </p>
+
+            <img
+            src="https://cdn-icons-png.flaticon.com/512/857/857455.png"
+            class="login-image">
+
+        </div>
+
+        <!-- Right Side -->
+
+        <div class="login-right">
+
+            <div class="login-box">
+
+                <h2>
+                    Admin Login
+                </h2>
+
+                <p>
+                    Welcome Back
+                </p>
+
+                {% if error %}
+
+                <div class="error-box">
+                    {{ error }}
+                </div>
+
+                {% endif %}
+
+                <form method="POST">
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        required
+                    >
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                    >
+
+                    <button type="submit">
+                        Login
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

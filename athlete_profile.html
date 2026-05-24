@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Athlete Profile</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for(
+    'static',
+    filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Athlete Profile</h1>
+
+    <table>
+        <img
+            src="{{ url_for(
+            'static',
+            filename='uploads/' +
+            athlete.photo) }}"
+            width="180"
+            style="
+            border-radius:50%;
+            display:block;
+            margin:auto;">
+
+        <tr>
+            <th>ID</th>
+            <td>{{ athlete.id }}</td>
+        </tr>
+
+        <tr>
+            <th>Name</th>
+            <td>{{ athlete.name }}</td>
+        </tr>
+
+        <tr>
+            <th>Age</th>
+            <td>{{ athlete.age }}</td>
+        </tr>
+
+        <tr>
+            <th>Sport</th>
+            <td>{{ athlete.sport }}</td>
+        </tr>
+
+        <tr>
+            <th>Performance Growth</th>
+            <td>
+                {{ athlete.performance_growth }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Recovery Rate</th>
+            <td>
+                {{ athlete.recovery_rate }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Hormone Level</th>
+            <td>
+                {{ athlete.hormone_level }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Supplement Use</th>
+            <td>
+                {{ athlete.supplement_use }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Risk Level</th>
+            <td>
+                {{ athlete.risk_level }}
+            </td>
+        </tr>
+
+    </table>
+    <h2>
+        Medical Analysis Report
+    </h2>
+
+    <div class="report-box">
+
+    <h3>
+        Analysis
+    </h3>
+
+    <p>
+        {{ analysis }}
+    </p>
+
+    <h3>
+        Recommendation
+    </h3>
+
+    <p>
+        {{ recommendation }}
+    </p>
+
+    </div>
+
+    <br>
+
+    <a href="/dashboard">
+        <button>
+            Back to Dashboard
+        </button>
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Athlete</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Edit Athlete</h1>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="name"
+            value="{{ athlete.name }}"
+            required
+        >
+
+        <input
+            type="number"
+            name="age"
+            value="{{ athlete.age }}"
+            required
+        >
+
+        <input
+            type="text"
+            name="sport"
+            value="{{ athlete.sport }}"
+            required
+        >
+
+        <button type="submit">
+            Update Athlete
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

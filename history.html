@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction History</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Prediction History</h1>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Athlete Name</th>
+            <th>Risk Level</th>
+            <th>Date & Time</th>
+        </tr>
+
+        {% for item in history %}
+        <tr>
+
+            <td>{{ item.id }}</td>
+            <td>{{ item.athlete_name }}</td>
+            <td>{{ item.risk_level }}</td>
+            <td>{{ item.prediction_date }}</td>
+
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/dashboard">
+        <button>
+            Back
+        </button>
+    </a>
+
+</div>
+
+</body>
+</html>

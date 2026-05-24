@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Athlete</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Add Athlete</h1>
+    
+
+        <form method="POST"
+        enctype="multipart/form-data">
+        <input
+            type="text"
+            name="name"
+            placeholder="Athlete Name"
+            required
+        >
+
+        <input
+            type="number"
+            name="age"
+            placeholder="Age"
+            required
+        >
+
+        <input
+            type="text"
+            name="sport"
+            placeholder="Sport Name"
+            required
+        >
+
+        <input
+            type="number"
+            step="0.1"
+            name="performance_growth"
+            placeholder="Performance Growth"
+            required
+        >
+
+        <input
+            type="number"
+            step="0.1"
+            name="recovery_rate"
+            placeholder="Recovery Rate"
+            required
+        >
+
+        <input
+            type="number"
+            step="0.1"
+            name="hormone_level"
+            placeholder="Hormone Level"
+            required
+        >
+
+        <label><b>Supplement Use</b></label>
+
+        <select name="supplement_use" required>
+            <option value="">Select</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <br><br>
+        <label>
+        Upload Athlete Photo
+        </label>
+
+        <input
+        type="file"
+        name="photo"
+        accept="image/*"
+        >
+
+        <button type="submit">
+            Predict & Save
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/dashboard">
+        <button>
+            Back to Dashboard
+        </button>
+    </a>
+
+</div>
+
+</body>
+</html>
